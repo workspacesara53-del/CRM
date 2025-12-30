@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+body {
+  font-family: var(--font-body), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline), sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 168 100% 26%; /* WhatsApp Primary Green #00a884 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 168 100% 96%;
+    --secondary-foreground: 168 100% 20%;
+    --muted: 210 10% 91%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 168 100% 96%;
+    --accent-foreground: 168 100% 20%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 10% 90%;
+    --input: 210 10% 90%;
+    --ring: 168 100% 26%;
+    --radius: 0.5rem;
+
+    /* WhatsApp Specific */
+    --wa-bg: 0 0% 98%;
+    --wa-chat-bg: 36 21% 91%; /* #efeae2 */
+    --wa-sent-bubble: 88 56% 87%; /* #dcf8c6 */
+    --wa-received-bubble: 0 0% 100%;
+    --wa-sidebar-bg: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 168 100% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 168 100% 30%;
+    
+    /* WhatsApp Dark Mode */
+    --wa-chat-bg: 210 15% 7%; /* #0b141a */
+    --wa-sent-bubble: 168 100% 15%; /* #005c4b */
+    --wa-received-bubble: 210 15% 15%; /* #202c33 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* WhatsApp Pattern Overlay */
+.wa-wallpaper {
+  background-color: hsl(var(--wa-chat-bg));
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+  background-blend-mode: overlay;
+  opacity: 0.06;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.chat-bubble {
+  @apply relative p-2 px-3 shadow-sm text-[14.2px] max-w-[85%];
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+}
+
+.chat-bubble-sent {
+  @apply bg-[#dcf8c6] dark:bg-[#005c4b] text-[#111b21] dark:text-[#e9edef] rounded-lg rounded-tr-none ml-auto;
+}
+
+.chat-bubble-received {
+  @apply bg-white dark:bg-[#202c33] text-[#111b21] dark:text-[#e9edef] rounded-lg rounded-tl-none mr-auto;
+}
+
+/* Bubble Tail Effect */
+.chat-bubble-sent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #dcf8c6;
+  border-bottom: 8px solid transparent;
+}
+.dark .chat-bubble-sent::after {
+  border-left-color: #005c4b;
+}
+
+.chat-bubble-received::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid white;
+  border-bottom: 8px solid transparent;
+}
+.dark .chat-bubble-received::before {
+  border-right-color: #202c33;
+}

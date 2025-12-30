@@ -1,0 +1,26 @@
+{
+  "name": "wacrm-worker",
+  "version": "1.0.0",
+  "description": "WhatsApp Worker Service for WaCRM",
+  "main": "dist/worker.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/worker.ts",
+    "worker": "tsx src/worker.ts",
+    "build": "tsc",
+    "dev": "tsx src/worker.ts"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
+    "@supabase/supabase-js": "^2.86.0",
+    "@google/generative-ai": "^0.24.1",
+    "openai": "^4.71.1",
+    "dotenv": "^16.5.0",
+    "pino": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.7.0",
+    "typescript": "^5"
+  }
+}
